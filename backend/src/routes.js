@@ -1,29 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const latestTelemetry = {}; // store last received data for each device
-
-router.get('/health', (req, res) => {
-  res.json({ status: 'OK', time: new Date().toISOString() });
-});
-
-// Save real telemetry from device/simulator
-router.post('/telemetry', (req, res) => {
-  latestTelemetry[req.body.deviceId] = {
-    ...req.body,
-    timestamp: new Date().toISOString()
-  };
-  console.log('Telemetry received:', latestTelemetry[req.body.deviceId]);
-  res.json({ ok: true });
-});
-
-// Provide recommendation based on last telemetry
 router.get('/recommendation/:deviceId', (req, res) => {
   const deviceId = req.params.deviceId;
+  const latestTelemetry = req.app.get('latestTelemetry');
   const data = latestTelemetry[deviceId];
 
   if (!data) {
-    return res.status(404).json({ error: "No telemetry data for this device yet" });
+    return res.status(404).json({ error: 'No telemetry data for this device yet' });
   }
 
   const advice = [];
