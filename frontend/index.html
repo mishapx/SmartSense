@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSence Air Quality</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>SmartSence Air Quality</h1>
+    </header>
+
+    <main class="container">
+        <section class="data-display">
+            <h2>Current Readings</h2>
+            <div id="loading" class="loading hidden">Loading data...</div>
+            <div id="data-fields" class="data-fields">
+                </div>
+            <p id="timestamp-utc" class="timestamp"></p>
+        </section>
+        
+        <section class="info-tab">
+            <h2>What the Values Mean</h2>
+            <p class="gauge-explanation">The **Overall Air Quality Index** is primarily driven by **PM2.5** levels (Particulate Matter) as it is the most critical pollutant for human health.</p>
+            <ul id="info-list" class="info-list">
+                </ul>
+        </section>
+        
+        <section class="aqi-indicator">
+            <h2>Overall Air Quality Index (PM2.5)</h2>
+            <div class="gauge-container">
+                <div id="aqi-gauge" class="gauge">
+                    <div id="aqi-needle" class="needle"></div>
+                </div>
+                <div class="gauge-labels">
+                    <span>Good</span>
+                    <span>Moderate</span>
+                    <span>Unhealthy</span>
+                    <span>Hazardous</span>
+                </div>
+            </div>
+            <p id="aqi-level-text" class="aqi-level-text"></p>
+        </section>
+
+        <section class="advice-section">
+            <h2>Recommendations</h2>
+            <ul id="advice-list" class="advice-list">
+                </ul>
+        </section>
+
+        <button id="refresh-button" class="refresh-button">
+            <i class="fas fa-sync-alt"></i> Get Latest Data
+        </button>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
